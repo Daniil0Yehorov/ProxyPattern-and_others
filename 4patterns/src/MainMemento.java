@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class MAAAIn {
+public class MainMemento {
     public static void main(String[] args) {
         MySQLDAO dao = MySQLDAO.getInstance();
         Caretaker caretaker = new Caretaker();
