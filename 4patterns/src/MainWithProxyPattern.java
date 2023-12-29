@@ -73,11 +73,10 @@ public class MainLast {
         while (true) {
             System.out.println("Дії з бд:");
             System.out.println("1. Пошук продукту за назвою");// кожен користувач може шукати продукт за назвою
-            System.out.println("3. Видалення продукту за id");// тільки адмін
-            System.out.println("4. Додавання нового продукту до системи");// тільки адмін
-            System.out.println("5. Оновлення даних певного продукту у системі"); // тільки адмін
-            System.out.println("2. Вихід");
-
+            System.out.println("2. Видалення продукту за id");// тільки адмін
+            System.out.println("3. Додавання нового продукту до системи");// тільки адмін
+            System.out.println("4. Оновлення даних певного продукту у системі"); // тільки адмін
+            System.out.println("5. Вихід");
             System.out.print("Виберіть дію: ");
             int choose = scanner.nextInt();
             SensorRole sr=new SensorRole();
@@ -91,11 +90,11 @@ public class MainLast {
                     System.out.println(sr.AceptRole());
                     break;
 
-                case 2:
+                case 5:
                     // Вихід з меню після аутентифікації
                     System.out.println("Вихід з меню після аутентифікації.");
                     return;
-                case 3:
+                case 2:
                     // видалення продукту
                     System.out.println("Введіть id продукту для видалення: ");
                     int idpFordelete = scanner.nextInt();
@@ -105,7 +104,7 @@ public class MainLast {
                     }
                     else {System.out.println(sr.AceptRole());}
                     break;
-                case 4:
+                case 3:
                     // Додавання нового продукту у систему
                     scanner.nextLine();
                     System.out.println("назва продукту:");
@@ -122,7 +121,7 @@ public class MainLast {
                     }
                     else {System.out.println(sr.AceptRole());}
                     break;
-                case 5:
+                case 4:
                     // Оновлення даних певного продукту у системі
                     System.out.println("Введіть ID продукту для оновлення:");
                     int productIdToUpdate = scanner.nextInt();
