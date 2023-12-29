@@ -62,7 +62,16 @@ public class MainLast {
             }
         }
     }
+    public static class SensorRole {
 
+        public	String CancelRole() {
+            return "Вам відказано у доступі";
+        }
+        public	String AceptRole() {
+            return "Вам дозволено у доступі";
+        }
+
+    }
     private static void autenfication(MySQLProxy dao, Scanner scanner) {
         while (true) {
             System.out.println("Дії з бд:");
@@ -74,6 +83,7 @@ public class MainLast {
 
             System.out.print("Виберіть дію: ");
             int choose = scanner.nextInt();
+            SensorRole sr=new SensorRole();
             scanner.nextLine();
             switch (choose) {
                 case 1:
@@ -91,7 +101,11 @@ public class MainLast {
                     // видалення продукту
                     System.out.print("Введіть id продукту для видалення: ");
                     int idpFordelete = scanner.nextInt();
-                    dao.deleteProduct(idpFordelete);
+                    product a1= dao.deleteProduct(idpFordelete);
+                    if(a1==null){
+                    sr.CancelRole();
+                    }
+                    else {sr.AceptRole();}
                     break;
                 case 4:
                     // Додавання нового продукту у систему
@@ -104,7 +118,11 @@ public class MainLast {
                     int amount = scanner.nextInt();
                     System.out.println("Вікові обмеження:");
                     float age_restrictions = scanner.nextFloat();
-                    dao.InsertP(name, price, amount, age_restrictions);
+                    product a2= dao.InsertP(name, price, amount, age_restrictions);
+                    if(a2==null){
+                        sr.CancelRole();
+                    }
+                    else {sr.AceptRole();}
                     break;
                 case 5:
                     // Оновлення даних певного продукту у системі
@@ -119,7 +137,11 @@ public class MainLast {
                     int newAmount = scanner.nextInt();
                     System.out.println("Нові вікові обмеження:");
                     float newAgeRestrictions = scanner.nextFloat();
-                    dao.UpdateProduct(productIdToUpdate,newName, newPrice, newAmount, newAgeRestrictions);
+                    product a3=dao.UpdateProduct(productIdToUpdate,newName, newPrice, newAmount, newAgeRestrictions);
+                    if(a3==null){
+                        sr.CancelRole();
+                    }
+                    else {sr.AceptRole();}
                     break;
 
                 default:
