@@ -111,11 +111,7 @@ public class MySQLProxy implements  IDAO
     }
     @Override
     public User insertUser(int id, String login, String password, int role_id) {
-        int userRoleid=getRolesIdByUserId(idUser);
-        if(userRoleid!=2){// не користувач
-                        return null;
-        }
-        else {return dao.insertUser(id, login, password, role_id);}
+        return dao.insertUser(id, login, password, role_id);
     }
 
     @Override
