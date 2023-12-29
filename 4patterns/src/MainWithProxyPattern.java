@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class MainLast {
+public class MainWithProxyPattern {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         MySQLProxy dao = new MySQLProxy();
