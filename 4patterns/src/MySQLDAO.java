@@ -490,19 +490,6 @@ public product_details[] getDetailsForProduct(int productId) {
         }
     }
 
-
-    // перероблені деякі функції для 4пз
-    // реєстрація користувача
-    public class SensorRole {
-
-        public	String CancelRole() {
-            return "Вам відказано у доступі";
-        }
-        public	String AceptRole() {
-            return "Вам дозволено у доступі";
-        }
-
-    }
     public User insertUser(int id, String login, String password, int role_id) {
         try {
             String sqlQuery = "INSERT INTO `user` (id, login, password, Roles_id) VALUES (?, ?, ?, ?)";
@@ -560,14 +547,14 @@ public product_details[] getDetailsForProduct(int productId) {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                return resultSet.getInt("roles_id");
+                return resultSet.getInt("Roles_id");
             } else {
-                return -1;
+                return 0;
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return -1;
+            return 0;
         }
     }
 
