@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class MainWithProxyPattern {
+public class MainLast {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         MySQLProxy dao = new MySQLProxy();
@@ -25,7 +25,6 @@ public class MainWithProxyPattern {
                     String passwordreg = scanner.next();
                     System.out.print("Введіть ID ролі: ");
                     int idrole = scanner.nextInt();
-
                     dao.insertUser(idreg, loginreg, passwordreg, idrole);
                     System.out.println("Користувач зареєстрований.");
                     break;
@@ -36,13 +35,10 @@ public class MainWithProxyPattern {
                     String log = scanner.next();
                     System.out.print("Введіть пароль: ");
                     String pas = scanner.next();
-
                     int roleUser = dao.authenticateUser(log, pas);
-
                     if (roleUser != 0) {
                         System.out.println("Аутентифікація успішна.");
                         MySQLProxy dao1 = new MySQLProxy(roleUser);
-                        // Після аутентифікації надати додаткові можливості
                         autenfication(dao1, scanner);
                     }
                     else {
@@ -71,6 +67,7 @@ public class MainWithProxyPattern {
             return "Вам дозволено у доступі";
         }
 
+
     }
     private static void autenfication(MySQLProxy dao, Scanner scanner) {
         while (true) {
@@ -91,6 +88,7 @@ public class MainWithProxyPattern {
                     System.out.print("Введіть назву продукту: ");
                     String Pname = scanner.nextLine();
                     dao.searchProductsByName(Pname);
+                    System.out.println(sr.AceptRole());
                     break;
 
                 case 2:
@@ -99,13 +97,13 @@ public class MainWithProxyPattern {
                     return;
                 case 3:
                     // видалення продукту
-                    System.out.print("Введіть id продукту для видалення: ");
+                    System.out.println("Введіть id продукту для видалення: ");
                     int idpFordelete = scanner.nextInt();
                     product a1= dao.deleteProduct(idpFordelete);
                     if(a1==null){
-                    sr.CancelRole();
+                        System.out.println(sr.CancelRole());
                     }
-                    else {sr.AceptRole();}
+                    else {System.out.println(sr.AceptRole());}
                     break;
                 case 4:
                     // Додавання нового продукту у систему
@@ -120,9 +118,9 @@ public class MainWithProxyPattern {
                     float age_restrictions = scanner.nextFloat();
                     product a2= dao.InsertP(name, price, amount, age_restrictions);
                     if(a2==null){
-                        sr.CancelRole();
+                        System.out.println(sr.CancelRole());
                     }
-                    else {sr.AceptRole();}
+                    else {System.out.println(sr.AceptRole());}
                     break;
                 case 5:
                     // Оновлення даних певного продукту у системі
@@ -139,9 +137,9 @@ public class MainWithProxyPattern {
                     float newAgeRestrictions = scanner.nextFloat();
                     product a3=dao.UpdateProduct(productIdToUpdate,newName, newPrice, newAmount, newAgeRestrictions);
                     if(a3==null){
-                        sr.CancelRole();
+                        System.out.println(sr.CancelRole());
                     }
-                    else {sr.AceptRole();}
+                    else {System.out.println(sr.AceptRole());}
                     break;
 
                 default:
